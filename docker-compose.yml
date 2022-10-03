@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  tailscale_proxy_example:
+    external: false
+
+volumes:
+  ssl_keys:
+  tailscale_state:
+
+services:
+  tailscale-https-proxy:
+    image: hollie/tailscale-caddy-proxy:buildx-latest
+    build:
+      context: ./image
+    volumes:
+      - tailscale_state:/var/lib/tailscale
+      - ssl_keys:/ssl_certificate
+    environment:
+      - TS_HOSTNAME=tstest
+      - TS_TAILNET=hedgehog-decibel
+      - CADDY_TARGET=whoami:80
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale/ # sets state directory env var so that state is persisted
+    restart: on-failure
+    init: true
+    networks:
+     - tailscale_proxy_example
+
+  whoami:
+    image: traefik/whoami
+    networks:
+     - tailscale_proxy_example
