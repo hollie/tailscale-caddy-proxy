@@ -22,4 +22,3 @@ done
 tailscale status
 
 wait ${PID}
-wait ${PID}

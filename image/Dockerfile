@@ -10,6 +10,6 @@ RUN mkdir --parents /var/run/tailscale && ln -s /tmp/tailscaled.sock /var/run/ta
 
 COPY start.sh /usr/bin/start.sh
 RUN  chmod +x /usr/bin/start.sh
-CMD  "start.sh"
+CMD  [ "start.sh" ]
 
 
