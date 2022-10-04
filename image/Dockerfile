@@ -8,6 +8,7 @@ RUN apk add --no-cache ca-certificates mailcap caddy
 
 RUN mkdir --parents /var/run/tailscale && ln -s /tmp/tailscaled.sock /var/run/tailscale/tailscaled.sock
 
+COPY VERSION /VERSION
 COPY start.sh /usr/bin/start.sh
 RUN  chmod +x /usr/bin/start.sh
 CMD  [ "start.sh" ]
