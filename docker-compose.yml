@@ -5,23 +5,20 @@ networks:
     external: false
 
 volumes:
-  ssl_keys:
-  tailscale_state:
+  tailscale-whoami-state:
 
 services:
-  tailscale-https-proxy:
-    image: hollie/tailscale-caddy-proxy:buildx-latest
+
+  tailscale-whoami-proxy:
+#    image: hollie/tailscale-caddy-proxy:buildx-latest
     build:
       context: ./image
     volumes:
-      - tailscale_state:/var/lib/tailscale
-      - ssl_keys:/ssl_certificate
+      - tailscale-whoami-state:/var/lib/tailscale # Persist the tailscale state directory
     environment:
-      - TS_HOSTNAME=tstest
-      - TS_TAILNET=hedgehog-decibel
-      - CADDY_TARGET=whoami:80
-      - TS_USERSPACE=true
-      - TS_STATE_DIR=/var/lib/tailscale/ # sets state directory env var so that state is persisted
+      - TS_HOSTNAME=tstest		# Hostname you want this instance to have on the tailscale network
+      - TS_TAILNET=hedgehog-decibel     # Fill in your tailnet name here without the .ts.net suffix!
+      - CADDY_TARGET=whoami:80		# Target service and port
     restart: on-failure
     init: true
     networks:
