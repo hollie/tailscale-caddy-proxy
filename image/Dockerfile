@@ -6,7 +6,7 @@ ENV CADDY_TARGET=
 ENV TS_TAILNET=
 ENV TS_HOSTNAME=
 ENV TS_USERSPACE=true
-ENV TS_STATE_DIR=/var/lib/tailscale/ # sets state directory env var so that state is persisted
+ENV TS_STATE_DIR=/var/lib/tailscale/ 
 
 RUN apk add --no-cache ca-certificates mailcap caddy
 
