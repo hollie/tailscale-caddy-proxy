@@ -6,7 +6,7 @@ I have a few docker web services I want to share with other users.
 
 Before Tailscale this would mean opening firewall ports and enabling authentication for the users. And then you still need to worry about the fact that your services are exposed to the world. 
 
-Tailscale enables you to share devices securely. Setup is trivial and the maintenance of who can access what is very accessible.
+Tailscale enables you to share devices securely. Setup is trivial and the maintenance of who can access what is very convenient.
 
 So, I want to share web services via Tailscale. I found that there are multiple solutions already presented, such as the [Tailscale Docker Desktop extension](https://tailscale.com/blog/docker/), the [Tailscale sidecar](https://github.com/markpash/tailscale-sidecar) by markpash and of course the official [Tailscale docker image](https://hub.docker.com/r/tailscale/tailscale).
 
