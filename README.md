@@ -1,4 +1,4 @@
-This is the repository of the Tailscale-Caddy proxy. This is a docker image that enables easy sharing of docker services over the Tailscale network via HTTPS.
+This is the repository of the Tailscale-Caddy proxy, a docker image that enables easy sharing of docker HTTP services over the Tailscale network via HTTPS.
 
 # Rationale
 
