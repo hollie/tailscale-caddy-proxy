@@ -8,27 +8,28 @@ Before Tailscale this would mean opening firewall ports and enabling authenticat
 
 Tailscale enables you to share devices securely. Setup is trivial and the maintenance of who can access what is very convenient.
 
-So, I want to share web services via Tailscale. I found that there are multiple existing solutions, such as the [Tailscale Docker Desktop extension](https://tailscale.com/blog/docker/), the [Tailscale sidecar](https://github.com/markpash/tailscale-sidecar) by markpash and of course the official [Tailscale docker image](https://hub.docker.com/r/tailscale/tailscale).
+So, I want to share web services via Tailscale. I found that there are multiple existing solutions such as:
+* the [Tailscale Docker Desktop extension](https://tailscale.com/blog/docker/), 
+* the [Tailscale sidecar](https://github.com/markpash/tailscale-sidecar) by markpash 
+* the official [Tailscale docker image](https://hub.docker.com/r/tailscale/tailscale).
 
-None of those fit my usage scenario so I built the solution that is available in this repo.
+None of those solutions fit my usage scenario so I built the solution that is available in this repo.
 
 Compared to the other solutions this image:
 
-* does an auto-refresh of the SSL certificatesd without any further required actions by the user
-
+* does an auto-refresh of the SSL certificates without any further required actions by the user
 * supports a restart of the service container without having to restart the Tailscale/Caddy container
 
 # Functional description
 
 I want to be able to serve a web application to users by running a container in parallel to the container that serves the application. The side container should perform:
 
-* the connection to the tailscale network
-
+* the connection to the Tailscale network
 * take care of serving the application via HTTPS with valid and regularly updated SSL certificates
 
-To implement this, I start from the official Tailscale docker image and I extend it with Caddy. A small script that runs when starting the container takes care of creating the right configuration file for Caddy based on the environment parameters that are set when launching the container. 
+To implement this I start from the official Tailscale docker image and I extend it with Caddy. A small script that runs when starting the container takes care of creating the right configuration file for Caddy based on the environment parameters that are set when launching the container. 
 
-Once started, the container brings up the tailscale connection. Users with access to the tailscale device can connect over HTTP to port 80 (which is redirected to HTTPS) or to port 443 over HTTPS directly. The Caddy reverse proxy takes care of negotiating SSL certificated with the Tailscale daemon in the container to present valid HTTPS certificates.
+Once started the container brings up the Tailscale connection. Users with access to the Tailscale device can connect over HTTP to port 80 (which is redirected to HTTPS) or to port 443 over HTTPS directly. The Caddy reverse proxy takes care of negotiating SSL certificated with the Tailscale daemon in the container to present valid HTTPS certificates.
 
 # Requirements
 
@@ -50,9 +51,9 @@ You also want to declare a permanent volume to store the Tailscale credentials s
 
 Say you have an example service called 'whoami' that is a simple webserver listening on port 80 and you want to expose it via Tailscale.
 
-We want to keep the network traffic between this container and the Tailscale proxy separated from the default docker network, so declare a network. Attach the whoami container Declare a container of the `hollie/tailscale-caddy-proxy` image next to it and enter the right environmental parameters. 
+We want to keep the network traffic between this container and the Tailscale proxy separated from the default docker network, so declare a network. Attach the whoami container to that network. Declare a container of the `hollie/tailscale-caddy-proxy` image next to it, attach it also to the same network and enter the right environmental parameters for the Tailscale and Caddy configuration.
 
-Example code:
+The resulting docker compose file looks like:
 
 ```docker
 version: '3'
@@ -85,6 +86,8 @@ services:
      - tailscale_proxy_example
 ```
 
-Run `docker-compose up` and visit the link that is printed in the terminal to authenticate the machine to your Tailscale network. Disable key expiry via the Tailscale settings page for this host and you are all set!
+Run `docker-compose up` and visit the link that is printed in the terminal to authenticate the machine to your Tailscale network. Disable key expiry via the Tailscale settings page for this host and restart the containers with `docker compose up -d`. 
+
+All set!
 
 
