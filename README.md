@@ -75,12 +75,12 @@ services:
      - tailscale_proxy_example
 
   tailscale-whoami-proxy:
-    image: hollie/tailscale-caddy-proxy:buildx-latest
+    image: hollie/tailscale-caddy-proxy:latest
     volumes:
-      - tailscale-whoami-state:/var/lib/tailscale # Persist the tailscale state directory
+      - tailscale-whoami-state:/var/lib/tailscale # Persist tailscale state
     environment:
-      - TS_HOSTNAME=tailscale-example    # Hostname you want this instance to have on the tailscale network
-      - TS_TAILNET=tailnet-XXXX     # Fill in your tailnet name here without the .ts.net suffix!
+      - TS_HOSTNAME=tailscale-example # Hostname on the tailscale network
+      - TS_TAILNET=tailnet-XXXX       # Your tailnet name without the .ts.net suffix!
       - CADDY_TARGET=whoami:80        # Target service and port
     restart: on-failure
     init: true
