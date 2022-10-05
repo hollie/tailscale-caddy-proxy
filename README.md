@@ -90,4 +90,6 @@ Run `docker-compose up` and visit the link that is printed in the terminal to au
 
 All set!
 
+# Acknowledgements
 
+Thanks to lpasselin for his [example code](https://github.com/lpasselin/tailscale-docker) that shows how to extend the default Tailscale image.
