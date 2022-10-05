@@ -8,7 +8,7 @@ Before Tailscale this would mean opening firewall ports and enabling authenticat
 
 Tailscale enables you to share devices securely. Setup is trivial and the maintenance of who can access what is very convenient.
 
-So, I want to share web services via Tailscale. I found that there are multiple solutions already presented, such as the [Tailscale Docker Desktop extension](https://tailscale.com/blog/docker/), the [Tailscale sidecar](https://github.com/markpash/tailscale-sidecar) by markpash and of course the official [Tailscale docker image](https://hub.docker.com/r/tailscale/tailscale).
+So, I want to share web services via Tailscale. I found that there are multiple existing solutions, such as the [Tailscale Docker Desktop extension](https://tailscale.com/blog/docker/), the [Tailscale sidecar](https://github.com/markpash/tailscale-sidecar) by markpash and of course the official [Tailscale docker image](https://hub.docker.com/r/tailscale/tailscale).
 
 None of those fit my usage scenario so I built the solution that is available in this repo.
 
