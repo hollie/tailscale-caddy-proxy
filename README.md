@@ -31,6 +31,8 @@ To implement this I start from the official Tailscale docker image and I extend 
 
 Once started the container brings up the Tailscale connection. Users with access to the Tailscale device can connect over HTTP to port 80 (which is redirected to HTTPS) or to port 443 over HTTPS directly. The Caddy reverse proxy takes care of negotiating SSL certificated with the Tailscale daemon in the container to present valid HTTPS certificates.
 
+![block-diagram](https://github.com/hollie/tailscale-caddy-proxy/raw/main/visuals/block-diagram.png)
+
 # Requirements
 
 For this image to work correctly you need to enable HTTPS support and MagicDNS in your Tailscale network configuration.
