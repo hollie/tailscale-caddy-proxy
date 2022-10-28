@@ -7,7 +7,7 @@ IMAGE=tailscale-caddy-proxy
 # platforms
 PLATFORM=linux/arm64,linux/amd64,linux/arm/v7
 # bump version
-docker run --rm -v "$PWD":/app treeder/bump patch
+#docker run --rm -v "$PWD":/app treeder/bump patch
 version=`cat VERSION`
 echo "Building version: $version"
 # run build
