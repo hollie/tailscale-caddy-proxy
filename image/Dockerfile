@@ -5,6 +5,7 @@ LABEL maintainer="hollie@lika.be"
 ENV CADDY_TARGET=
 ENV TS_TAILNET=
 ENV TS_HOSTNAME=
+ENV TS_EXTRA_FLAGS=
 ENV TS_USERSPACE=true
 ENV TS_STATE_DIR=/var/lib/tailscale/ 
 

@@ -21,7 +21,8 @@ services:
     environment:
       - TS_HOSTNAME=tailscale-example 		  # Hostname you want this instance to have on the tailscale network
       - TS_TAILNET=tailnet-XXXX         	  # Your tailnet name without the .ts.net suffix!
-      - CADDY_TARGET=whoami:80			  # Target service and port
+      - CADDY_TARGET=whoami:80			      # Target service and port
+#      - TS_EXTRA_ARGS=--accept-dns            # Optional extra arguments to pass when starting tailscale
     restart: on-failure
     init: true
     networks:
