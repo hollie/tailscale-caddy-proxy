@@ -82,6 +82,7 @@ services:
       - TS_HOSTNAME=tailscale-example # Hostname on the tailscale network
       - TS_TAILNET=tailnet-XXXX       # Your tailnet name without the .ts.net suffix!
       - CADDY_TARGET=whoami:80        # Target service and port
+#      - TS_EXTRA_ARGS=<optional extra arguments> # When starting tailscale in the container, e.g. to allow exit node or override the DNS settings. 
     restart: on-failure
     init: true
     networks:
