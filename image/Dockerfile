@@ -1,4 +1,4 @@
-FROM tailscale/tailscale:stable
+FROM tailscale/tailscale:v1.36.2
 
 LABEL maintainer="hollie@lika.be"
 
