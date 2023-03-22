@@ -1,4 +1,6 @@
-FROM tailscale/tailscale:v1.36.2
+ARG TAILSCALE_VERSION=v1.38.1
+
+FROM tailscale/tailscale:$TAILSCALE_VERSION
 
 LABEL maintainer="hollie@lika.be"
 
@@ -15,7 +17,7 @@ RUN apk add --no-cache ca-certificates mailcap caddy
 RUN mkdir --parents /var/run/tailscale && ln -s /tmp/tailscaled.sock /var/run/tailscale/tailscaled.sock
 
 # Add image version to file for traceablity
-COPY VERSION /VERSION
+RUN echo "$TAILSCALE_VERSION" > /VERSION
 
 # Add the modified startup script
 COPY start.sh /usr/bin/start.sh
