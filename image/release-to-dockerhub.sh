@@ -11,7 +11,7 @@ PLATFORM=linux/arm64,linux/amd64,linux/arm/v7
 version=`awk -F "=" '/TAILSCALE_VERSION=/{print $NF}' Dockerfile`
 echo "Building version: $version"
 # run build
-docker buildx build --platform $PLATFORM -t $USERNAME/$IMAGE:latest -t $USERNAME/$IMAGE:v$version --push .
+docker buildx build --platform $PLATFORM -t $USERNAME/$IMAGE:latest -t $USERNAME/$IMAGE:$version --push .
 # tag it
 git add -A
 git commit -m "Tailscale-Caddy-proxy version $version"
