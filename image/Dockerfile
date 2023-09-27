@@ -1,4 +1,4 @@
-ARG TAILSCALE_VERSION=v1.48.1
+ARG TAILSCALE_VERSION=v1.50.0
 
 FROM tailscale/tailscale:$TAILSCALE_VERSION
 
@@ -11,7 +11,8 @@ ENV TS_EXTRA_FLAGS=
 ENV TS_USERSPACE=true
 ENV TS_STATE_DIR=/var/lib/tailscale/ 
 
-RUN apk add --no-cache ca-certificates mailcap caddy
+RUN apk update && apk upgrade --no-cache && apk add --no-cache ca-certificates mailcap caddy
+RUN caddy upgrade
 
 # Ensure Caddy can access the tailscale socket, Caddy expects it to be under /var/run/tailscale so make a symlink
 RUN mkdir --parents /var/run/tailscale && ln -s /tmp/tailscaled.sock /var/run/tailscale/tailscaled.sock
