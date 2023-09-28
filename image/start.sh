@@ -2,7 +2,7 @@
 trap 'kill -TERM $PID' TERM INT
 
 echo "This is Tailscale-Caddy-proxy version"
-cat /VERSION
+tailscale --version
 
 echo "Building Caddy configfile"
 
