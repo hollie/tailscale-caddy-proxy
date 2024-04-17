@@ -91,7 +91,7 @@ services:
 
 Run `docker-compose up` and visit the link that is printed in the terminal to authenticate the machine to your Tailscale network. Disable key expiry via the Tailscale settings page for this host and restart the containers with `docker compose up -d`. 
 
-All set! Now you can access the host via the full tailscale domainname (including the tailnet-XXX.ts.net).
+All set! Now you can access the host via the full Tailscale domainname (including the tailnet-XXX.ts.net).
 
 # Acknowledgements
 
