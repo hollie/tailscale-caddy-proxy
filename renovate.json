@@ -1,3 +1,4 @@
 {
-  "extends": ["github>jquagga/renovate-config"]
+  "extends": ["github>jquagga/renovate-config"],
+  "forkProcessing": "enabled"
 }
