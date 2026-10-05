@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # check=skip=SecretsUsedInArgOrEnv
-ARG TAILSCALE_VERSION=v1.98.9
+ARG TAILSCALE_VERSION=v1.102.5
 
 FROM tailscale/tailscale:$TAILSCALE_VERSION
 
