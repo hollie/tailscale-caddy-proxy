@@ -1,1 +1,3 @@
 docker-compose-test*
+.DS_Store
+test-and-release.sh
